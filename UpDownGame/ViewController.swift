@@ -31,8 +31,17 @@ class ViewController: UIViewController {
         
         // 선택한 숫자를 변수에다가 저장
         guard let num = Int(numString) else { return }
-        mychoice = num
         
+        let tmpButton = view.viewWithTag(mychoice) as? UIButton
+        tmpButton?.isSelected = false
+        mychoice = num
+        sender.isSelected = true
+        if sender.isSelected == true{
+            sender.tintColor = UIColor.black
+            sender.backgroundColor = UIColor.black
+            tmpButton?.tintColor = UIColor.systemGray4
+            tmpButton?.backgroundColor = UIColor.systemGray4
+        }
     }
     
     @IBAction func resetButtonTap(_ sender: UIButton) {
@@ -40,7 +49,10 @@ class ViewController: UIViewController {
         resultLabel.text = "선택하세요"
         myChoiceLabel.text = ""
         computerchoice = Int.random(in: 1...10)
-        
+        let tmpButton = view.viewWithTag(mychoice) as? UIButton
+        tmpButton?.isSelected = false
+        tmpButton?.tintColor = UIColor.systemGray4
+        tmpButton?.backgroundColor = UIColor.systemGray4
     }
     @IBAction func selectButtonTap(_ sender: UIButton) {
         //컴퓨터의 숫자와 내가 선택한 숫자를 비교해서 UP/DOWN/Binggo
